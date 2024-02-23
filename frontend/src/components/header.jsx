@@ -1,35 +1,44 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
-
+    const [navMenu, toggleNavMenu] = useState("Click me");
+    const handleClick = (event) => {
+        const navbarMenu = document.querySelector(".navbarMenu");
+        const body = document.getElementById("root");
+        navbarMenu.classList.toggle("hidden");
+        navbarMenu.classList.toggle("absolute");
+        body.classList.toggle("opacity-50");
+        navbarMenu.classList.toggle("bg-sky-500");
+    }
     return (
-        <header className="header bg-green-500 text-white">
-            <div className="container mx-auto px-4 py-4 lg:py-8 flex lg:flex-row justify-between items-center">
-                <h1 className="header-title text-2xl lg:text-3xl ml-4 lg:ml-0">Cloud Storage</h1>
-                <nav className="nav mt-4 lg:mt-0">
-                    <input type="checkbox" className="hidden" id="menu-toggle" checked={menuOpen} onChange={() => setMenuOpen(!menuOpen)} />
-                    <label htmlFor="menu-toggle" className="cursor-pointer lg:hidden mr-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </label>
-                    <div className={`lg:hidden ${menuOpen ? '' : 'hidden'}`} id="mobile-menu">
-                        <div className="menu bg-green-500 text-white">
-                            <a href="#" className="block text-lg lg:text-xl text-white my-2">Home</a>
-                            <a href="#" className="block text-lg lg:text-xl text-white my-2">Files</a>
-                            <a href="#" className="block text-lg lg:text-xl text-white my-2">Settings</a>
-                            <a href="#" className="block text-lg lg:text-xl text-white my-2">Help</a>
-                        </div>
-                    </div>
-                    <div className={`hidden lg:flex lg:items-center ${menuOpen ? '': 'hidden'}`}>
-                        <a href="#" className="nav-link active text-lg lg:text-xl text-white mr-4">Home</a>
-                        <a href="#" className="nav-link text-lg lg:text-xl text-white mr-4">Files</a>
-                        <a href="#" className="nav-link text-lg lg:text-xl text-white mr-4">Settings</a>
-                        <a href="#" className="nav-link text-lg lg:text-xl text-white">Help</a>
-                    </div>
-                </nav>
+        <header className="py-6 bg-green-500 px-4 text-white flex items-center justify-between header">
+        <div className="text-2xl cursor-pointer">Cloud Storage</div>
+        <div className="navbar-container">
+            <div className="xl:hidden lg:hidden md:hidden sm:block cursor-pointer absolute right-3 top-7" onClick={handleClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
             </div>
-        </header>
+            <nav className="xl:flex lg:flex md:flex hidden right-3 top-3 bg-white sm:bg-transparent pt-2 pr-20 pb-6 pl-3 sm:p-0 text-black sm:text-white rounded sm:shadow-none shadow navbarMenu">
+                <div className="xl:hidden lg:hidden md:hidden sm:block cursor-pointer absolute right-2 top-2 text-red" onClick={handleClick}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </div>
+                <div className="py-2 px-4 hover:bg-blue-500 rounded cursor-pointer">
+                    <a href="">Home</a>
+                </div>
+                <div className="py-2 px-4 hover:bg-blue-500 rounded cursor-pointer">
+                    <a href="">Files</a>
+                </div>
+                <div className="py-2 px-4 hover:bg-blue-500 rounded cursor-pointer">
+                    <a href="">Settings</a>
+                </div>
+                <div className="py-2 px-4 hover:bg-blue-500 rounded cursor-pointer">
+                    <a href="">Help</a>
+                </div>
+            </nav>
+        </div>
+    </header>
     )
 }
