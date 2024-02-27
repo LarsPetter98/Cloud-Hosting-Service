@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import {fileURLToPath} from 'url';
 import multer from "multer";
+import router from "./routes.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,5 +27,7 @@ const storage = multer.diskStorage({
 
 //Initialize multer
 const upload = multer({storage: storage});
+
+app.use(router);
 
 app.listen(port);
