@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Outlet, Link} from "react-router-dom";
 
 export default function Header() {
     const [navMenu, toggleNavMenu] = useState("Click me");
@@ -11,8 +12,9 @@ export default function Header() {
         navbarMenu.classList.toggle("bg-sky-500");
     }
     return (
+        <>
         <header className="py-6 bg-green-500 px-4 text-white flex items-center justify-between header">
-        <div className="text-2xl cursor-pointer">Cloud Storage</div>
+        <div className="text-2xl cursor-pointer"><Link to="/Cloud-Hosting-Service/frontend/index.html">Cloud Storage</Link></div>
         <div className="navbar-container">
             <div className="xl:hidden lg:hidden md:hidden sm:block cursor-pointer absolute right-3 top-7" onClick={handleClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,5 +42,7 @@ export default function Header() {
             </nav>
         </div>
     </header>
+    <Outlet/>
+    </>
     )
 }

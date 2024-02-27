@@ -1,22 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/header.jsx";
-import Main from "./components/main.jsx";
-import Footer from "./components/footer.jsx";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import HomePage from "./pages/home-page/homePage.jsx"
+import LoginPage from "./pages/login-page/loginPage.jsx";
+import SignupPage from "./pages/signup-page/signupPage.jsx"
 
-function RenderPage () {
+function App () {
     return (
-        <>
-        <Header></Header>
-        <Main></Main>
-        <Footer></Footer>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+            </Routes>
+        </BrowserRouter>
     )
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <RenderPage />
-    </React.StrictMode>,
-);
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
